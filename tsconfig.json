@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react-native",
+    "lib": ["es2021"],
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "baseUrl": "src",
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "alwaysStrict": true,
+    "paths": {
+      "app": ["./app"],
+      "lib": ["./lib"],
+      "assets": ["./assets"],
+      "features": ["./features"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

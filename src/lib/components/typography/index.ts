@@ -1,0 +1,6 @@
+export { Regular } from './Regular'
+export { Heading } from './Heading'
+export { Subheading } from './Subheading'
+export { Label } from './Label'
+export { Display } from './Display'
+export { ThemedText } from './ThemedText'
