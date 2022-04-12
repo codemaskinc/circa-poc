@@ -5667,6 +5667,11 @@ os-tmpdir@^1.0.0:
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
 
+outstated@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/outstated/-/outstated-3.0.1.tgz#2512e92b0d227b20dbf18ce9cc5d0c6844fe5010"
+  integrity sha512-An17smaMQjCWgmrrV6MKge1j+0zAkt3EIMj8eHa9sDtgAbbh+PQSRvNnZZdrEqg+ed6AP1FssjuILkfR4oy2zw==
+
 p-finally@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
@@ -5984,6 +5989,11 @@ react-native-codegen@^0.0.13:
     flow-parser "^0.121.0"
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
+
+react-native-config@1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.5.tgz#6fe5895410b75e44fe4f4bf00caaf894a0981f3a"
+  integrity sha512-5oiAsoW88SOYDg/0cleJ2vJDqv98FJUbFQYEnH4sdMtEn3AAT3lb7BkTGW8HO/t3Vk9VOruwxUUnO4tzuxzCsw==
 
 react-native-gesture-handler@2.3.2:
   version "2.3.2"

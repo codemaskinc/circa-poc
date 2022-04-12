@@ -5,6 +5,20 @@ export type Dictionary<T = string> = {
         dueIn: T,
         seeAll: T
     },
+    alerts: {
+        oAuthError: {
+            title: T,
+            message: T
+        },
+        residentError: {
+            title: T,
+            message: T
+        },
+        dashboardError: {
+            title: T,
+            message: T
+        }
+    },
     screens: {
         home: {
             propertySection: {

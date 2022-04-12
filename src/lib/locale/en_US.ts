@@ -1,12 +1,25 @@
 import { Dictionary } from '../types'
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const en_US: Dictionary = {
     common: {
         day: 'day',
         days: 'days',
         dueIn: 'due in',
         seeAll: 'See all'
+    },
+    alerts: {
+        oAuthError: {
+            title: 'Error',
+            message: 'Couldn\'t fetch oAuth tokens'
+        },
+        residentError: {
+            title: 'Error',
+            message: 'Couldn\'t fetch residentId'
+        },
+        dashboardError: {
+            title: 'Error',
+            message: 'Couldn\'t fetch dashboard data'
+        }
     },
     screens: {
         home: {
@@ -21,7 +34,7 @@ export const en_US: Dictionary = {
                 },
                 backupCard: {
                     title: 'What\'s your backup plan?',
-                    subtitle: 'Start saving so you can always pay rent, event when life gest messy'
+                    subtitle: 'Start saving so you can always pay rent, event when life gets messy'
                 }
             }
         }

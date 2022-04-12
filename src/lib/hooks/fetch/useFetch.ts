@@ -39,7 +39,9 @@ export const useFetch = <ResponseType , RequestParams = KeyValuePair>(
                     setError(true)
                     setLoading(false)
 
-                    throw response
+                    if (extras?.onError) {
+                        extras?.onError(response, params as RequestParams)
+                    }
                 })
         },
     }

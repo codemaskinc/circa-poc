@@ -6,6 +6,7 @@ export { Touchable } from './Touchable'
 export { Button } from './Button'
 export { Dropdown } from './Dropdown'
 export { Card } from './Card'
+export { FullScreenLoader } from './FullScreenLoader'
 export {
     Typography,
     Grid

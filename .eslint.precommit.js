@@ -47,7 +47,7 @@ module.exports = {
         "semi": [2, "never"],
         "prefer-template": "error",
         "quotes": ["error", "single", { "allowTemplateLiterals": true }],
-        "camelcase": ["error", { allow: [ "en_", "us_", "id_", "access_" ] }],
+        "camelcase": ["off", { allow: [ "en_", "us_", "id_", "access_" ] }],
         "no-underscore-dangle": "error",
         "one-var": ["error", "never"],
         "no-unused-expressions": "error",
@@ -101,10 +101,10 @@ module.exports = {
                 }
             }
         ],
-        "@typescript-eslint/naming-convention": ["error",
+        "@typescript-eslint/naming-convention": ["off",
             {
                 "selector": "variable",
-                "format": ["camelCase", "UPPER_CASE"]
+                "format": ["camelCase", "UPPER_CASE", "snake_case"]
             },
             {
                 "selector": "function",
@@ -112,7 +112,7 @@ module.exports = {
             },
             {
                 "selector": "parameter",
-                "format": ["camelCase"]
+                "format": ["camelCase", 'snake_case']
             },
             {
                 "selector": "property",

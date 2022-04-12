@@ -15,11 +15,11 @@ export const useFetchPipe = () => ({
         const requestConfig = {
             ...config,
             timeout: config.timeout,
-            data: config.method !== HttpMethod.GET ? params || {} : undefined,
+            data: config.method !== HttpMethod.GET ? qs.stringify(params) || {} : undefined,
             params: config.method === HttpMethod.GET ? params : undefined,
             paramsSerializer: config.method === HttpMethod.GET
                 ? params => qs.stringify(params)
-                : undefined,
+                : undefined
         }
 
         return lastValueFrom(from(axios(requestConfig))

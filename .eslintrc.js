@@ -70,7 +70,7 @@ module.exports = {
         semi: [2, 'never'],
         'prefer-template': 'error',
         quotes: ['error', 'single', {allowTemplateLiterals: true}],
-        camelcase: ['error', {allow: ['en_']}],
+        camelcase: ['off', {allow: ['en_']}],
         'no-underscore-dangle': 'off',
         'one-var': ['error', 'never'],
         'no-unused-expressions': 'off',
@@ -128,10 +128,10 @@ module.exports = {
                 },
             },
         ],
-        '@typescript-eslint/naming-convention': ['error',
+        '@typescript-eslint/naming-convention': ['off',
             {
                 selector: 'variable',
-                format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+                format: ['camelCase', 'UPPER_CASE', 'PascalCase', 'snake_case'],
                 leadingUnderscore: 'allow'
             },
             {
@@ -145,7 +145,7 @@ module.exports = {
             },
             {
                 selector: 'parameter',
-                format: ['camelCase'],
+                format: ['camelCase', 'snake_case'],
             },
             {
                 selector: 'property',
