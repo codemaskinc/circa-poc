@@ -16,14 +16,14 @@ import { Icons } from 'assets'
 
 type DropdownOption = {
     label: string,
-    key: string
+    key: number
 }
 
 type DropdownProps = {
     defaultOption?: string,
     options: Array<DropdownOption>,
-    selectedOptionKey?: string,
-    onSelect(key: string): void
+    selectedOptionKey?: number,
+    onSelect(key: number): void
 }
 
 export const Dropdown: React.FunctionComponent<DropdownProps> = ({
@@ -34,7 +34,6 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
 }) => {
     const aref = useAnimatedRef<View>()
     const animatedDropdownPosition = useSharedValue({
-        x: 0,
         y: 0,
         width: 0
     })
@@ -49,8 +48,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
     }))
     const animatedDropdownStyles = useAnimatedStyle(() => ({
         top: animatedDropdownPosition.value.y + animatedDropdownTranslateY.value,
-        left: animatedDropdownPosition.value.x,
-        width: animatedDropdownPosition.value.width,
+        minWidth: animatedDropdownPosition.value.width,
         opacity: animatedDropdownOpacity.value
     }))
     const onCloseAnimation = () => {
@@ -68,7 +66,6 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({
 
             if (measured) {
                 animatedDropdownPosition.value = {
-                    x: measured.pageX,
                     // add extra spacing below the dropdown
                     y: measured.pageY + 40,
                     width: measured.width
@@ -174,6 +171,7 @@ const stylesheet = createStyles(template => ({
     dropdown: {
         position: 'absolute',
         borderRadius: template.gap(2),
+        alignSelf: 'center',
         backgroundColor: template.ui.background,
         ...template.ui.createShadow()
     },

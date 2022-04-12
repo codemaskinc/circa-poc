@@ -25,7 +25,7 @@ export const Touchable: React.FunctionComponent<TouchableProps> = ({
     hitSlopRight = 0,
     hitSlopTop = 0,
     hitSlopBottom = 0,
-    activeOpacity = 0.8
+    activeOpacity = 0.95
 }) => {
     const [pressedIn, setPressedIn] = useState(false)
 

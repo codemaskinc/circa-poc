@@ -5,12 +5,16 @@ import { useStyles, useTranslations } from 'lib/hooks'
 import { createStyles } from 'lib/styles'
 import { BarStyle } from 'lib/types'
 import { Icons } from 'assets'
+import { useDashboardStore } from 'lib/stores'
+import { Lease } from 'lib/models'
 import { CommunityCard, HomeHeader, PropertyManagerCard, WelcomeBanner } from './components'
 
 export const HomeScreen: React.FunctionComponent = () => {
     const T = useTranslations()
     const { styles } = useStyles(stylesheet)
-    const [selectedAddressKey, setSelectedAddressKey] = useState<string>()
+    const { dashboardState: currentLeases } = useDashboardStore()
+    const [firstLease] = currentLeases
+    const [selectedLease, setSelectedLease] = useState<Lease>(firstLease)
     const [isWelcomeBannerVisible, setWelcomeBannerVisibility] = useState<boolean>(true)
 
     return (
@@ -27,8 +31,15 @@ export const HomeScreen: React.FunctionComponent = () => {
                 showsVerticalScrollIndicator={false}
             >
                 <HomeHeader
-                    selectedAddressKey={selectedAddressKey}
-                    setSelectedAddressKey={setSelectedAddressKey}
+                    currentLeases={currentLeases}
+                    selectedLease={selectedLease}
+                    setSelectedLease={leaseId => {
+                        const targetLease = currentLeases.find(lease => lease.leaseId === leaseId)
+
+                        if (targetLease) {
+                            setSelectedLease(targetLease)
+                        }
+                    }}
                 />
                 <Grid.Background style={styles.detailsContainer}>
                     <Typography.Heading style={styles.sectionName}>
@@ -41,8 +52,10 @@ export const HomeScreen: React.FunctionComponent = () => {
                         <Card>
                             <PropertyManagerCard
                                 propertyManager={{
+                                    // todo user is hardoced
                                     name: 'John Smith',
-                                    userUUID: '1'
+                                    userUUID: '1',
+                                    avatarUrl: 'https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg'
                                 }}
                             />
                         </Card>

@@ -20,7 +20,7 @@ export const PropertyManagerCard: React.FunctionComponent<PropertyManagerCardPro
             <View style={styles.row}>
                 <Image
                     style={styles.avatar}
-                    source={{ uri: 'https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_960_720.jpg' }}
+                    source={{ uri: propertyManager.avatarUrl }}
                 />
                 <View style={styles.managerDetails}>
                     <Typography.Subheading>

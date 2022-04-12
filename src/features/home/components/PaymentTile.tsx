@@ -1,21 +1,22 @@
 import React from 'react'
 import { View } from 'react-native'
-import { useStyles } from 'lib/hooks'
+import { useCurrency, useStyles, useUpcommingPayment } from 'lib/hooks'
 import { createStyles } from 'lib/styles'
 import { VoidFunction } from 'lib/types'
 import { Payment } from 'lib/models'
+import { dateHelpers } from 'lib/utils'
 import { Touchable, Typography } from 'lib/components'
 
 interface PaymentTileProps extends Payment {
-    index: number,
     onPress: VoidFunction
 }
 
 export const PaymentTile: React.FunctionComponent<PaymentTileProps> = ({
-    index,
-    amount,
-    onPress
+    onPress,
+    ...payment
 }) => {
+    const { formatCurrency } = useCurrency()
+    const planIcon = useUpcommingPayment(payment.plan)
     const { styles, template } = useStyles(stylesheet)
 
     return (
@@ -31,16 +32,16 @@ export const PaymentTile: React.FunctionComponent<PaymentTileProps> = ({
                             style={styles.index}
                             forceColor={template.ui.black}
                         >
-                            {index + 1}
+                            {planIcon}
                         </Typography.Regular>
                     </View>
                 </View>
                 <View style={styles.details}>
                     <Typography.Regular>
-                        ${amount}
+                        {formatCurrency(payment.amount)}
                     </Typography.Regular>
                     <Typography.Subheading style={styles.date}>
-                        Nov 1
+                        {dateHelpers.toPaymentDate(payment.paymentDate)}
                     </Typography.Subheading>
                 </View>
             </View>

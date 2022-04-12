@@ -1,11 +1,11 @@
-enum Plan {
+export enum Plan {
     OnePay = 'onepay',
     TwoPay = 'twopay',
     FourPay = 'fourpay',
     OnePayDeferred = 'onepaydeferred'
 }
 
-type Payment = {
+export type Payment = {
     leaseId: number,
     paymentId: number,
     arrearsPaymentId: number,
@@ -33,13 +33,13 @@ type AdditionalDetails = {
     daysForNextPaymentText: string,
     amountForNextPayment: number,
     paymentId: number,
-    arrearsPaymentId: number,
-    failedPayments: Array<Payment>,
-    upcomingPayments: Array<Payment>
+    arrearsPaymentId: number
 }
 
 export type Lease = {
     leaseId: number,
+    upcomingPayments: Array<Payment>,
+    failedPayments: Array<Payment>,
     unitDisplayName: string,
     unitPrimaryDisplayName: string,
     additionalDetails: AdditionalDetails

@@ -1,33 +1,35 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { View } from 'react-native'
-import { useStyles, useTranslations } from 'lib/hooks'
+import { useCurrency, useStyles, useTranslations } from 'lib/hooks'
 import { createStyles } from 'lib/styles'
 import { Button, Dropdown, Grid, Touchable, Typography } from 'lib/components'
 import { Measurements } from 'lib/common'
+import { Lease } from 'lib/models'
 import { Icons } from 'assets'
 import { PaymentsHorizontalList } from './PaymentsHorizontalList'
 
 type HomeHeaderProps = {
-    selectedAddressKey?: string,
-    setSelectedAddressKey(key: string): void
+    selectedLease: Lease,
+    currentLeases: Array<Lease>,
+    setSelectedLease(key: number): void
 }
 
 export const HomeHeader: React.FunctionComponent<HomeHeaderProps> = ({
-    selectedAddressKey,
-    setSelectedAddressKey
+    currentLeases,
+    selectedLease,
+    setSelectedLease
 }) => {
     const T = useTranslations()
+    const { formatCurrency } = useCurrency()
     const { styles, template } = useStyles(stylesheet)
-    const addresses = [
-        {
-            key: '1',
-            label: 'Option 1'
-        },
-        {
-            key: '2',
-            label: 'Option 2'
-        }
-    ]
+    const options = useMemo(() => currentLeases
+        .map(lease => ({
+            key: lease.leaseId,
+            label: lease.unitPrimaryDisplayName
+                ? `${lease.unitDisplayName} #${lease.unitPrimaryDisplayName}`
+                : lease.unitDisplayName
+        })), [currentLeases])
+    const dueIn = selectedLease.additionalDetails.daysForNextPayment
 
     return (
         <Grid.Gap style={styles.header}>
@@ -38,9 +40,9 @@ export const HomeHeader: React.FunctionComponent<HomeHeaderProps> = ({
                 <View style={styles.actionLeft} />
                 <View style={styles.mainAction}>
                     <Dropdown
-                        options={addresses}
-                        selectedOptionKey={selectedAddressKey}
-                        onSelect={setSelectedAddressKey}
+                        options={options}
+                        selectedOptionKey={selectedLease.leaseId}
+                        onSelect={setSelectedLease}
                         defaultOption={T.components.homeHeader.dropdown.defaultOption}
                     />
                 </View>
@@ -56,14 +58,14 @@ export const HomeHeader: React.FunctionComponent<HomeHeaderProps> = ({
                 style={styles.dueInContainer}
             >
                 <Typography.Subheading forceColor={template.ui.white}>
-                    $1000 {T.common.dueIn}
+                    {`${formatCurrency(selectedLease.additionalDetails.amountForNextPayment)} ${T.common.dueIn}`}
                 </Typography.Subheading>
                 <Grid.Gap
                     gapTop={1}
                     style={styles.daysLeftContainer}
                 >
                     <Typography.Display forceColor={template.ui.white}>
-                        16 {T.common.days}
+                        {`${selectedLease.additionalDetails.daysForNextPayment} ${dueIn === 1 ? T.common.day : T.common.days}`}
                     </Typography.Display>
                     <Button
                         width={78}
@@ -74,13 +76,7 @@ export const HomeHeader: React.FunctionComponent<HomeHeaderProps> = ({
                 </Grid.Gap>
             </Grid.Gap>
             <View style={styles.paymentListContainer}>
-                <PaymentsHorizontalList
-                    payments={Array.from(new Array(6)).map((item, index) => ({
-                        amount: 1000,
-                        paymentUUID: index.toString(),
-                        payedAt: new Date(2022, index + 3, 1)
-                    }))}
-                />
+                <PaymentsHorizontalList payments={selectedLease.upcomingPayments} />
             </View>
         </Grid.Gap>
     )

@@ -3,8 +3,8 @@ import { ScrollView } from 'react-native'
 import { useStyles } from 'lib/hooks'
 import { createStyles } from 'lib/styles'
 import { Payment } from 'lib/models'
-import { PaymentTile } from './PaymentTile'
 import { VoidFunction } from 'lib/types'
+import { PaymentTile } from './PaymentTile'
 import { SeeAll } from './SeeAll'
 
 type PaymentsHorizontalListProps = {
@@ -27,10 +27,9 @@ export const PaymentsHorizontalList: React.FunctionComponent<PaymentsHorizontalL
             snapToInterval={140 + template.gap(2)}
             contentContainerStyle={styles.scrollViewContainer}
         >
-            {payments.map((payment, index) => (
+            {payments.map(payment => (
                 <PaymentTile
-                    index={index}
-                    key={payment.paymentUUID}
+                    key={payment.paymentId}
                     onPress={() => {}}
                     {...payment}
                 />
